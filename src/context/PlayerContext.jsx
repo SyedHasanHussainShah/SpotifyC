@@ -48,11 +48,25 @@ const PlayerContextProvider = (props) => {
     setPlayStatus(false);
   }
 
-  const playWithId = async (id)=>{
-    await setTrack(songsData[id])
-    await audioRef.current.play();
-    setPlayStatus(true);
+  useEffect(() => {
+  if (track && playStatus) {
+    audioRef.current.play();
   }
+}, [track]);
+
+
+  const playWithId = (id) => {
+  const song = songsData.find((s) => s.id === id);
+  if (song) {
+    setTrack(song);
+    setTimeout(() => {   // ⏳ wait for React to update <audio src>
+      audioRef.current.play();
+      setPlayStatus(true);
+    }, 100);
+  }
+};
+
+  
 
   const before = async ()=>{
     if(track.id > 0)

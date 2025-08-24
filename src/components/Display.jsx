@@ -23,7 +23,7 @@ function Display() {
   return (
     <div
       ref={displayref}
-      className="w-[100%] m-2 px-6 pt-4 rounded bg-[#121212] text-white overflow-auto lg:w-[75%] lg:ml-0"
+      className="flex-1 px-4 pt-4 bg-[#121212] text-white overflow-auto lg:w-[75%] lg:ml-0"
     >
       <Routes>
         <Route path="/" element={<DisplayHome />}></Route>

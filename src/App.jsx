@@ -3,24 +3,25 @@ import Home from './components/Home'
 import Opening from './components/Opening'
 
 function App() {
+  const [isSplashVisible, setSplashVisible] = useState(true);
 
- const [isSplashVisible, setSplashVisible] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSplashVisible(false);
+    }, 4000);
 
- useEffect(()=>{
-  const timer = setTimeout(()=>{
-    setSplashVisible(false);
-  },4000)
-
-  return ()=> clearTimeout(timer);
- },[])
-
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
-    {isSplashVisible && <Opening/>}
-    <Home/>
+      {isSplashVisible ? (
+        <Opening />   // show splash only
+      ) : (
+        <Home />      // show Home (with Player) only after splash ends
+      )}
     </>
   )
 }
 
-export default App
+export default App;
